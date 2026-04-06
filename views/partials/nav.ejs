@@ -1,0 +1,16 @@
+<nav class="bg-red-500 p-4">
+    <ul class="flex gap-10">
+        <li><a href="/" class="<%= currentPage === 'index' ? 'bg-red-400': 'hover:bg-red-400' %> text-white font-semibold transition duration-300"> Airbnb</a></li>
+
+        <li><a href="/homes" class="<%= currentPage === 'home' ? 'bg-red-400': 'hover:bg-red-400' %> text-white font-semibold transition duration-300"> Homes-List</a></li>
+
+        <li><a href="/favourites" class="<%= currentPage === 'favourites' ? 'bg-red-400' : 'hover:bg-red-400' %> transition duration-300 text-white font-semibold">Favourites</a></li>
+
+        <li><a href="/bookings" class="<%= currentPage === 'bookings' ? 'bg-red-400' : 'hover:bg-red-400' %> transition duration-300 text-white font-semibold">Bookings</a></li>
+
+        <li><a href="/host/host-home-list" class="<%= currentPage === 'host-homes' ? 'bg-red-400' : 'hover:bg-red-400' %> transition duration-300 text-white font-semibold">Host Homes</a></li>
+
+        <li><a href="/host/add-home" class="<%= currentPage === 'addHome' ? 'bg-red-400' : 'hover:bg-red-400' %> transition duration-300 text-white font-semibold">Add Home</a></li>
+        
+    </ul>
+</nav> 
