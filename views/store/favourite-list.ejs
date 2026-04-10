@@ -28,7 +28,7 @@
                         <span style="font-size: 13px; color: #374151;">⭐ <%= home.rating %></span>
                     </div>
                 </div>
-                <form action="/favourites/delete/<%= home.id %>" method="POST">
+                <form action="/favourites/delete/<%= home._id %>" method="POST">
                     <button class="bg-gray-300 p-2 rounded w-full mt-2 hover:bg-gray-400 transition duration-300">Remove From Favourite</button>
                 </form>
             </div>

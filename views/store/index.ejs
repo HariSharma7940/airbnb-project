@@ -12,23 +12,40 @@
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;">
       
       <% registeredHomes.forEach(home => { %>
-      <div style="background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s;" 
+           onmouseover="this.style.transform='translateY(-4px)'" 
+           onmouseout="this.style.transform='translateY(0)'">
         
         <!-- Image -->
         <div style="width: 100%; height: 180px; overflow: hidden;">
-          <img src="<%= home.photoURL %>" alt="<%= home.HouseName %>" style="width: 100%; height: 100%; object-fit: cover;" />
+          <img src=" /images/house2.png " 
+               alt="<%= home.houseName %>" 
+               style="width: 100%; height: 100%; object-fit: cover;"
+               referrerpolicy="no-referrer"
+               onerror="this.src='https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400'" />
         </div>
 
         <!-- Info -->
         <div style="padding: 0.85rem 1rem 1rem;">
-          <h3 style="margin: 0 0 4px; font-size: 15px; font-weight: 600; color: #111827;"><%= home.houseName %></h3>
-          <p style="margin: 0 0 10px; font-size: 13px; color: #6b7280;"><%= home.location %></p>
+          <h3 style="margin: 0 0 4px; font-size: 15px; font-weight: 600; color: #111827;">
+            <%= home.houseName %>
+          </h3>
+          <p style="margin: 0 0 10px; font-size: 13px; color: #6b7280;">
+            <%= home.location %>
+          </p>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 15px; font-weight: 600; color: #E24B4A;">RS<%= home.price %> / night</span>
-            <span style="font-size: 13px; color: #374151;">⭐ <%= home.rating %></span>
+            <span style="font-size: 15px; font-weight: 600; color: #E24B4A;">
+              RS <%= home.price %> / night
+            </span>
+            <span style="font-size: 13px; color: #374151;">
+              ⭐ <%= home.rating %>
+            </span>
           </div>
         </div>
-        <button class="bg-gray-300 p-2 rounded w-full mt-2 hover:bg-gray-400 transition duration-300">Book</button>
+
+        <button class="bg-gray-300 p-2 rounded w-full mt-2 hover:bg-gray-400 transition duration-300">
+          Book
+        </button>
 
       </div>
       <% }) %>
