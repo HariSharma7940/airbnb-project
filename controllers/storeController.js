@@ -2,11 +2,13 @@ const Home = require("../models/home");
 const Favourite = require("../models/favourite");
 
 exports.getIndex = (req, res, next) => {
+    console.log("Session Value: ", req.session);
     Home.find().then(registeredHomes => {
         res.render('store/index', {
             registeredHomes: registeredHomes,
             pageTitle: 'Airbnb Home',
-            currentPage: 'index'
+            currentPage: 'index',
+            isLoggedIn: req.isLoggedIn,
         });
     })
 }
@@ -16,7 +18,8 @@ exports.getHomes = (req, res, next) => {
         res.render('store/home-list', {
             registeredHomes: registeredHomes,
             pageTitle: 'Homes List',
-            currentPage: 'home'
+            currentPage: 'home',
+            isLoggedIn: req.isLoggedIn,
         });
     })
 }
@@ -24,7 +27,8 @@ exports.getHomes = (req, res, next) => {
 exports.getBookings = (req, res, next) => {
     res.render('store/bookings', {
         pageTitle: 'My Bookings',
-        currentPage: 'bookings'
+        currentPage: 'bookings',
+        isLoggedIn: req.isLoggedIn,
     });
 }
 
@@ -36,7 +40,8 @@ exports.getFavourites = (req, res, next) => {
         res.render('store/favourite-list', {
             favouriteHomes: favouriteHomes,
             pageTitle: 'My Favourites',
-            currentPage: 'favourites'
+            currentPage: 'favourites',
+            isLoggedIn: req.isLoggedIn,
         });
     })
 }
@@ -58,7 +63,6 @@ exports.postAddToFavourite = (req, res, next) => {
     });
 };
 
-
 exports.postRemoveFromFavourite = (req, res, next) => {
     const homeId = req.params.homeId;
     Favourite.findOneAndDelete({houseId: homeId}).then(result => {
@@ -69,7 +73,6 @@ exports.postRemoveFromFavourite = (req, res, next) => {
         res.redirect("/favourites")
     })
 }
-
 
 exports.getHomeDetails = (req, res, next) => {
     const homeId = req.params.homeId;
@@ -82,7 +85,8 @@ exports.getHomeDetails = (req, res, next) => {
         res.render('store/home-details', {
             home: home,                     
             pageTitle: 'Home Details',
-            currentPage: 'Home'
+            currentPage: 'Home',
+            isLoggedIn: req.isLoggedIn,
         });
     })
 }
