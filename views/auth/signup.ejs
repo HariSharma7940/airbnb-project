@@ -1,0 +1,118 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-100">
+    <%- include('../partials/nav') %>
+    <div class="flex justify-center mt-10 mb-10">
+        <div class="bg-white p-10 rounded-xl shadow-lg" style="width: 100%; max-width: 480px;">
+            <h1 class="text-3xl font-bold text-center mb-1">Create Your Account</h1>
+            <hr class="mb-6 border-gray-200"/>
+
+            <form action="/signup" method="POST">
+                
+                <%- include('../partials/errors') %>
+                <!-- First & Last Name -->
+                <div class="flex gap-4 mb-4">
+                    <div class="w-full">
+                        <label class="text-sm text-gray-600 mb-1 block">First Name</label>
+                        <div class="flex items-center border border-gray-300 rounded-lg bg-white px-3">
+                            <span class="text-gray-400 mr-2">👤</span>
+                            <input type="text" 
+                                name="firstName" 
+                                placeholder="John"
+                                value="<%= oldInput.firstName ? oldInput.firstName: '' %>"
+                                class="w-full p-2 outline-none bg-white"
+                                required/>
+                        </div>
+                    </div>
+                    <div class="w-full">
+                        <label class="text-sm text-gray-600 mb-1 block">Last Name</label>
+                        <div class="flex items-center border border-gray-300 rounded-lg bg-white px-3">
+                            <span class="text-gray-400 mr-2">👤</span>
+                            <input type="text" 
+                                name="lastName" 
+                                placeholder="Doe"
+                                value="<%= oldInput.lastName ? oldInput.lastName: '' %>"
+                                class="w-full p-2 outline-none bg-white"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-4">
+                    <label class="text-sm text-gray-600 mb-1 block">Email Address</label>
+                    <div class="flex items-center border border-gray-300 rounded-lg bg-white px-3">
+                        <span class="text-gray-400 mr-2">✉️</span>
+                        <input type="email" 
+                            name="email" 
+                            placeholder="your.email@example.com"
+                            value="<%= oldInput.email ? oldInput.email: '' %>"
+                            class="w-full p-2 outline-none bg-white"
+                            required/>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-4">
+                    <label class="text-sm text-gray-600 mb-1 block">Password</label>
+                    <div class="flex items-center border border-gray-300 rounded-lg bg-white px-3">
+                        <span class="text-gray-400 mr-2">🔒</span>
+                        <input type="password" 
+                            name="password" 
+                            placeholder="Enter Your Password" 
+                            class="w-full p-2 outline-none bg-white"
+                            required/>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-4">
+                    <label class="text-sm text-gray-600 mb-1 block">Confirm Password</label>
+                    <div class="flex items-center border border-gray-300 rounded-lg bg-white px-3">
+                        <span class="text-gray-400 mr-2">🔒</span>
+                        <input type="password" 
+                            name="confirmPassword" 
+                            placeholder="Confirm Your Password" 
+                            class="w-full p-2 outline-none bg-white"
+                            required/>
+                    </div>
+                </div>
+
+                <!-- User Type -->
+                <div class="border border-gray-300 rounded-lg p-4 mb-4">
+                    <p class="text-sm text-gray-600 mb-3">I want to register as:</p>
+                    <div class="flex" style="gap: 1.5rem;">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="userType" value="guest" id="guest" class="accent-red-500" 
+                                <%= oldInput.userType === 'guest' ? 'checked' : '' %> />
+                            <span class="text-gray-700 font-medium">Guest</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="radio" name="userType" value="host" id="host" class="accent-red-500"
+                                <%= oldInput.userType === 'host' ? 'checked' : '' %> />
+                            <span class="text-gray-700 font-medium">Host</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Terms -->
+                <div class="flex items-center gap-2 mb-6">
+                    <input type="checkbox" name="terms" id="terms" class="accent-red-500 w-4 h-4" required />
+                    <label for="terms" class="text-gray-600 text-sm cursor-pointer">
+                        I agree to the <span class="text-red-500 underline cursor-pointer">terms and conditions</span>
+                    </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="w-full bg-red-500 text-white p-3 rounded-lg cursor-pointer hover:bg-red-600 transition duration-300 font-semibold text-lg">
+                    Register →
+                </button>
+
+                <!-- Login Link -->
+                <p class="text-center text-gray-500 text-sm mt-4">
+                    Already have an account? <a href="/login" class="text-red-500 font-semibold">Log in</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

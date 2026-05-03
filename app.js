@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const mongoDBStore = require('connect-mongodb-session') (session);
 const DB_PATH = "mongodb+srv://root:Haripaudel01@harisharma.soi2loa.mongodb.net/airbnb?retryWrites=true&w=majority"
 
 const errorsControllers = require("./controllers/errors")
@@ -17,24 +16,22 @@ const app = express();
 app.set('view engine', 'ejs')
 app.set('views', 'views')
 
-const store = new mongoDBStore({
-    uri: DB_PATH,
-    collection: 'sessions'
-});
-
-
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
     secret: "Airbnb project complete full stack",
     resave: false,
-    saveUninitialized: true,
-    store
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true,
+        secure: false
+    }
 }));
 
 app.use((req, res, next) => {
     req.isLoggedIn = req.session.isLoggedIn;
-    // res.locals.isLoggedIn = req.isLoggedIn;
+    res.locals.isLoggedIn = req.isLoggedIn;
     next();
 });
 

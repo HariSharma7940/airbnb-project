@@ -5,10 +5,9 @@ exports.getAddHome = (req, res, next) => {
         pageTitle: 'airbnb Home',
         currentPage: 'addHome',
         editing: false,
-        isLoggedIn: res.isLoggedIn,
+        user: req.session.user
     })
 }
-
 
 exports.getEditHome = (req, res, next) => {
     const homeId = req.params.homeId;
@@ -19,18 +18,16 @@ exports.getEditHome = (req, res, next) => {
             console.log("Home not found for editing.");
             return res.redirect("/host/host-home-list");
         }
-        // const home = home;
         console.log(homeId, editing, home);
         res.render('host/edit-home', {
             home: home,
             pageTitle: 'Edit your Home',
             currentPage: 'host-homes',
             editing: editing,
-            isLoggedIn: res.isLoggedIn,
+            user: req.session.user
         })
     })
 }
-
 
 exports.getHostHomes = (req, res, next) => {
     Home.find().then(registeredHomes => {
@@ -38,7 +35,7 @@ exports.getHostHomes = (req, res, next) => {
             registeredHomes: registeredHomes,
             pageTitle: 'Host Homes List',
             currentPage: 'host-homes',
-            isLoggedIn: res.isLoggedIn,
+            user: req.session.user
         });
     })
 }
@@ -50,10 +47,8 @@ exports.postAddHome = (req, res, next) => {
     home.save().then(() => {
         console.log("Home Saved Successfully.");
     });
-
     res.redirect('/host/host-home-list')
 }
-
 
 exports.postEditHome = (req, res, next) => {
     const { id, houseName, price, location, rating, photoUrl, description  } = req.body;
@@ -74,7 +69,6 @@ exports.postEditHome = (req, res, next) => {
         console.log("Error while finding home ", err);
     });
 }
-
 
 exports.postDeleteHome = (req, res, next) => {
     const homeId = req.params.homeId;
